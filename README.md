@@ -1,34 +1,126 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TUTORTUBE
 
-## Getting Started
+> The system will serve as a learning platform for students that wants to learn web development. The system will work in a way that allows a new user(student) that wants to learn front-end web development to pick a particular course from a list of courses(HTML, CSS, Javascript, React, Bootstrap, and Next.js).
 
-First, run the development server:
+![screenshot](./app_screenshot.png)
+
+The project will consume an API from [Tutortube-API](https://github.com/adejam/tutortube-api)
+
+## Features
+
+- Authentication system
+- Show lists of videos based on category and, also show a single video
+- Add video comments
+- Show all comments
+
+## Technology Used
+
+- HTML
+
+  - Semantic HTML
+
+- CSS
+
+  - CSS Flexbox
+
+- [Nextjs](https://nextjs.org/)
+
+- Typescript
+
+- Cookie
+
+- Javascript
+
+- [stylint](https://stylelint.io/)
+
+- [Eslint](https://eslint.org/)
+
+- [NPM](https://www.npmjs.com/)
+
+## Live Demo
+
+[Live demo](https://tutortube.vercel.app/)
+
+### Development (Running locally)
+
+- Clone the project
+
+```bash
+git clone https://github.com/adejam/tutortube.git
+
+```
+
+- Install Dependencies
+
+```bash
+npm install
+```
+
+To run StyleLint by itself, you may run the lint task:
+
+```bash
+npm run lint:check
+```
+
+Or to automatically fix issues found (where possible):
+
+```bash
+npm run lint
+```
+
+You can also check against Prettier:
+
+```bash
+npm run format:check
+```
+
+and to have it actually fix (to the best of its ability) any format issues, run:
+
+```bash
+npm run format
+```
+
+You can also check against HTML Validator:
+
+```bash
+npm run html-validator
+```
+
+To run the App
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Style Guides
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- [CSS Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/css.html)
+- [HTML Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/index.html)
+- [JavaScript Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html)
+- [Git Style Guide](https://udacity.github.io/git-styleguide/)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 👤 Author
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Adeleye Jamiu
 
-## Learn More
+- Github: [@adejam](http://github.com/adejam)
+- Twitter: [@adeleye_oj](https://twitter.com/Adeleye_oj)
+- LinkedIn: [@adeleye-jamiu](https://linkedin.com/in/adeleye-jamiu)
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions, issues and feature requests are welcome!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Feel free to check the [issues page](../../issues).
 
-## Deploy on Vercel
+## Show your support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Give a ⭐️ if you like this project!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgments
+
+- [Nextjs](https://nextjs.org/)
+
+## 📝 License
+
+[MIT licensed](./LICENSE).
