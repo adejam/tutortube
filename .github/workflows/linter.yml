@@ -20,6 +20,6 @@ jobs:
           node-version: 12.x
       - name: Install required dependency for node
         run: |
-          npm install --save-dev eslint@6.8.x eslint-config-airbnb@18.1.x eslint-plugin-import@2.20.x eslint-plugin-jsx-a11y@6.2.x eslint-plugin-react@7.20.x eslint-plugin-react-hooks@2.5.x
+          npm install --save-dev eslint-config-next
       - name: ESLint Report
         run: lint
