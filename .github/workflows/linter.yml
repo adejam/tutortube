@@ -22,4 +22,4 @@ jobs:
         run: |
           npm install --save-dev eslint-config-next
       - name: ESLint Report
-        run: lint
+        run: npm run lint
