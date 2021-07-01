@@ -37,6 +37,7 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
                   type='text'
                   label='Name'
                   name='name'
+                  options={[]}
                 />
 
                 <FormikControl
@@ -44,18 +45,21 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
                   type='email'
                   label='Email'
                   name='email'
+                  options={[]}
                 />
                 <FormikControl
                   control='input'
                   type='password'
                   label='Password'
                   name='password'
+                  options={[]}
                 />
                 <FormikControl
                   control='input'
                   type='password'
                   label='Confirm Password'
                   name='password_confirmation'
+                  options={[]}
                 />
                 <button type='submit' disabled={!formik.isValid}>
                   Submit

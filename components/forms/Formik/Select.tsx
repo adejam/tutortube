@@ -1,9 +1,18 @@
-import React from 'react'
 import { Field, ErrorMessage } from 'formik'
 import TextError from './TextError'
 
-function Select ({ label, name, options, ...rest }) {
-  // const { label, name, options, ...rest } = props
+type Option = {
+  key: string;
+  value: string;
+}
+
+export interface SelectProps {
+  label: string;
+  name: string;
+  options: Option[];
+}
+
+const Select: React.FunctionComponent<SelectProps> = ({ label, name, options, ...rest }) => {
   return (
     <div className='form-control'>
       <label htmlFor={name}>{label}</label>

@@ -1,6 +1,10 @@
-import React from 'react'
+import { ReactNode } from "react"
 
-function TextError ({ children }) {
+export interface TextErrorProps {
+  children?: ReactNode;
+}
+
+const TextError: React.FunctionComponent<TextErrorProps> = ({ children }) => {
   return <div className='text-danger'>{children}</div>
 }
 

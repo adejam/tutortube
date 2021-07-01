@@ -1,9 +1,21 @@
-import React from 'react'
 import Input from './Input'
 import Textarea from './Textarea'
 import Select from './Select'
 
-function FormikControl ({ control, ...rest }) {
+type Option = {
+  key: string;
+  value: string;
+}
+
+export interface FormikControlProps {
+  control: string;
+  type: string;
+  label: string;
+  name: string;
+  options: Option[];
+}
+
+const FormikControl: React.FunctionComponent<FormikControlProps> = ({ control, ...rest }) => {
   switch (control) {
     case 'input':
       return <Input {...rest} />

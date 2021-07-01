@@ -35,12 +35,14 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
                       type='email'
                       label='Email'
                       name='email'
+                      options={[]}
                     />
                     <FormikControl
                       control='input'
                       type='password'
                       label='Password'
                       name='password'
+                      options={[]}
                     />
                     <button type='submit' disabled={!formik.isValid}>
                       Submit

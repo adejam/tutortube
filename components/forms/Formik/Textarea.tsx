@@ -2,8 +2,12 @@ import React from 'react'
 import { Field, ErrorMessage } from 'formik'
 import TextError from './TextError'
 
-function Textarea ({ label, name, ...rest }) {
-  // const { label, name, ...rest } = props
+export interface TextareaProps {
+  label: string;
+  name: string;
+}
+
+const Textarea: React.FunctionComponent<TextareaProps> = ({ label, name, ...rest }) => {
   return (
     <div className='form-control'>
       <label htmlFor={name}>{label}</label>

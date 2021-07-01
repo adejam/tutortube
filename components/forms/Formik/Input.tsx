@@ -1,8 +1,12 @@
-import React from 'react'
 import { Field, ErrorMessage } from 'formik'
 import TextError from './TextError'
 
-function Input ({ label, name, ...rest }) {
+export interface InputProps {
+  label: string;
+  name: string;
+}
+
+const Input: React.FunctionComponent<InputProps> = ({ label, name, ...rest }) => {
   return (
     <div className='d-flex flex-column mb-10'>
       <label htmlFor={name}>{label}</label>
