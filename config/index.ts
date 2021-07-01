@@ -1,5 +1,5 @@
 const dev = process.env.NODE_ENV !== 'production';
 
-const server = dev ? 'http://localhost:3000' : 'https://companies-list.vercel.app';
+export const server = dev ? 'http://localhost:3000' : 'https://tutortube.vercel.app/';
 
-export default server;
+export const baseApiUrl = 'https://tutortube-api.herokuapp.com/api';
