@@ -175,3 +175,7 @@ select:focus,
 .justify-center {
   justify-content: center;
 }
+
+.text-danger {
+  color:#dc3545;
+}

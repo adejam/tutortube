@@ -7,7 +7,7 @@ const Navbar = () => (
       <div className="brand ml-10">
         <Link href="/">
           <a>
-            <Image src="/vercel.svg" alt="site brand" width={150} height={40} />
+            <b>TutorTube</b>
           </a>
         </Link>
       </div>

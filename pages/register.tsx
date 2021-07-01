@@ -1,8 +1,14 @@
+import Head from 'next/head'
+  import RegisterForm from '../components/forms/RegisterForm'
+
 const register = () => {
     return (
-        <div>
-            <h1>Register</h1>
-        </div>
+        <>
+        <Head>
+        <title>Tutortube | Register</title>
+        </Head>
+        <RegisterForm />
+        </>
     )
 }
 
