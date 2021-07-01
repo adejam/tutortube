@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import React from 'react'
+import LoginForm from '../components/forms/LoginForm'
 
 const login = () => {
     return (
@@ -6,7 +8,7 @@ const login = () => {
         <Head>
         <title>Tutortube | Login</title>
         </Head>
-            <h1>Login</h1>
+            <LoginForm />
         </>
     )
 }

@@ -1,4 +1,4 @@
-import { Formik, Form, FormikHelpers } from 'formik'
+import { Formik, Form } from 'formik'
 import FormikControl from './Formik/FormikControl'
 import RegistrationSchema from '../../schemas/registration.schema'  
 
@@ -29,7 +29,7 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
           validationSchema={RegistrationSchema}
           onSubmit={onSubmit}
         >
-          {(formik: FormikHelpers<any>) => {
+          {(formik) => {
             return (
               <Form>
                 <FormikControl
