@@ -10,7 +10,7 @@ interface LayoutProps {
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => (
   <div className="content">
     <Head>
-      <title>Companies List</title>
+      <title>Tutortube</title>
       <meta name="description" content="Adeleye jamiu companies list app" />
       <meta name="keywords" content="Companies list" />
       <link rel="icon" href="/favicon.png" />

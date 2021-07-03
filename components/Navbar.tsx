@@ -13,7 +13,7 @@ const Navbar = () => (
       </div>
       <ul className="d-flex mr-10">
         <li className="d-flex justify-center align-center mr-10">
-          <Link href="/">
+          <Link href="/home">
             <a>Home</a>
           </Link>
         </li>
