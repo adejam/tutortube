@@ -1,7 +1,7 @@
 import { Formik, Form, FormikHelpers } from 'formik'
 import FormikControl from './Formik/FormikControl'
 import LoginSchema from '../../schemas/login.schema'
-import { configHeader } from '../../config';
+import { configHeader, server } from '../../config';
 import Axios from 'axios'
 
 export interface LoginFormProps {
@@ -22,13 +22,15 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
           const onSubmit = (values: Values) => {
             Axios.post(`/login`, values, configHeader)
       .then((res) => {
-        // const data = res.data;
-        // if (data.message) {
-        //   console.log()
-        // } else if (data.error) {
-
-        // }
-        console.log(res);
+        const data = res.data;
+        const body = JSON.stringify({ token: data.token});
+        Axios.post(`${server}/login`, body, configHeader)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+        console.log(error);
+        });
       })
       .catch((error) => {
         console.log(error);

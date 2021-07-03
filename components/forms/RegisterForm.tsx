@@ -22,7 +22,6 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
   };
 
   const onSubmit = (values: Values) => {
-    // Axios.post(`${server}/sanctum/csrf-cookie`, values, configHeader)
     Axios.post(`/register`, values, configHeader)
       .then((res) => {
         const data = res.data;
@@ -56,14 +55,6 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
               name="name"
               options={[]}
             />
-{/* 
-            <FormikControl
-              control="input"
-              type="text"
-              label="Name"
-              name="role"
-              options={[]}
-            /> */}
 
             <FormikControl
               control="input"
