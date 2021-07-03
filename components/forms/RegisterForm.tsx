@@ -2,7 +2,8 @@ import { Formik, Form } from "formik";
 import FormikControl from "./Formik/FormikControl";
 import RegistrationSchema from "../../schemas/registration.schema";
 import Axios from 'axios';
-import { baseApiUrl, configHeader, server } from '../../config'
+import { configHeader, server } from '../../config'
+import jscookie from "js-cookie";
 
 export interface RegisterFormProps {}
 
@@ -28,7 +29,14 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
         const body = JSON.stringify({ token: data.token});
         Axios.post(`${server}/register`, body, configHeader)
         .then((res) => {
-          console.log(res.data);
+          const { success } = res.data;
+            if (success) {
+              jscookie.set("role", data.role, { expires: 1 / 24, path: "/" });
+              jscookie.set("username", data.username, {
+                expires: 1 / 24,
+                path: "/",
+              });
+            }
         })
         .catch((error) => {
         console.log(error);
