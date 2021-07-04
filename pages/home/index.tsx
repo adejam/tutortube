@@ -10,5 +10,6 @@ const home: React.FunctionComponent<homeProps> = ({token}) => {
         <h1>Welcome Home</h1>
      );
 }
+
  
 export default AuthProtectedRoute(home);
