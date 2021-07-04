@@ -21,7 +21,7 @@ export const getServerSideProps = async (ctx: any) => {
     let video = {};
     let error = '';
     const { token, role, username } = cookies(ctx);
-    if (!token && !role && !username) {
+    if (!token) {
       return {
         redirect: {
           destination: '/login',
@@ -42,6 +42,14 @@ export const getServerSideProps = async (ctx: any) => {
         video = await response.json();
       } catch (e) {
         error = e.toString();
+      }
+      if (error) {
+        return {
+          redirect: {
+            destination: '/404',
+            permanent: false,
+          },
+        }
       }
     return {
       props: { video, token, role, error },

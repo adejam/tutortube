@@ -1,7 +1,13 @@
 import cookies from 'next-cookies';
+import React from 'react';
+import Link from 'next/link';
+
+interface videos {
+  videos: Array<Video>
+}
 
 export interface videosCategoryProps {
-    videos: object
+    videos: videos
     username: string
     role: string
     token: string
@@ -18,11 +24,20 @@ type Video = {
 
  
 const videosCategory: React.FunctionComponent<videosCategoryProps> = ({videos, token, error}) => {
-    console.log(videos);
+    console.log(videos.videos);
     console.log(token);
     console.log(error);
+    const videosArray = videos.videos;
     return ( 
-        <h1>Videos</h1>
+        <>
+
+        {videosArray.map(video => (
+        <Link href={`/videos/${video.category}/{video.video_id}`} key={video.video_id}>
+          <a>{video.title}</a>
+          </Link>
+      ))}
+      <h1>jdiid</h1>
+        </>
     );
 }
  
@@ -32,7 +47,7 @@ export const getServerSideProps = async (ctx: any) => {
     let videos = {};
     let error = '';
     const { token, role, username } = cookies(ctx);
-    if (!token && !role && !username) {
+    if (!token) {
       return {
         redirect: {
           destination: '/login',
@@ -53,6 +68,14 @@ export const getServerSideProps = async (ctx: any) => {
         videos = await response.json();
       } catch (e) {
         error = e.toString();
+      }
+      if (error) {
+        return {
+          redirect: {
+            destination: '/404',
+            permanent: false,
+          },
+        }
       }
     return {
       props: { videos, token, role, error },
