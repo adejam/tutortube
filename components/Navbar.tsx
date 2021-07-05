@@ -13,7 +13,7 @@ const Navbar = () => (
       </div>
       <ul className="d-flex mr-10">
         <li className="d-flex justify-center align-center mr-10">
-          <Link href="/home">
+          <Link href="/">
             <a>Home</a>
           </Link>
         </li>
@@ -25,6 +25,11 @@ const Navbar = () => (
         <li className="d-flex justify-center align-center mr-10">
           <Link href="/register">
             <a>Sign Up</a>
+          </Link>
+        </li>
+        <li className="d-flex justify-center align-center mr-10">
+          <Link href="/logout">
+            <a>Logout</a>
           </Link>
         </li>
       </ul>
