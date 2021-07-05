@@ -1,17 +1,30 @@
 import cookies from 'next-cookies';
 
 export interface singleVideoProps {
-    video: []
+    video: Video
     token: string
     error: string
 }
+
+
+type Video = {
+    video_id: string;
+    url: string
+    category: string
+    description: string
+    title: string
+}
+
  
 const singleVideo: React.FunctionComponent<singleVideoProps> = ({video, token, error}) => {
     console.log(video);
     console.log(token);
     console.log(error);
     return ( 
-        <div>Single Video</div>
+        <div>
+            <h1>{video.title}</h1>
+            <p>{video.description}</p>
+        </div>
      );
 }
  
@@ -39,7 +52,8 @@ export const getServerSideProps = async (ctx: any) => {
             },
           },
         );
-        video = await response.json();
+        const vide = await response.json();
+        video = vide.videos
       } catch (e) {
         error = e.toString();
       }

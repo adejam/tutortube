@@ -32,9 +32,12 @@ const videosCategory: React.FunctionComponent<videosCategoryProps> = ({videos, t
         <>
 
         {videosArray.map(video => (
-        <Link href={`/videos/${video.category}/{video.video_id}`} key={video.video_id}>
+          <div key={video.video_id}>
+<Link href={`/videos/${video.category}/${video.video_id}`} >
           <a>{video.title}</a>
           </Link>
+          </div>
+        
       ))}
       <h1>jdiid</h1>
         </>
