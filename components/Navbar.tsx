@@ -4,17 +4,23 @@ import jscookie from "js-cookie";
 
 const Navbar = () => {
   const [cookies, setCookies] = useState({username: '', role: ''});
+  
+  const setTheCookies = (username: any, role: any) => {
+    setCookies({
+      ...cookies,
+      username: username,
+      role: role,
+    })
+  }
 
   useEffect(() => {
     setTimeout(()=>{
       const username: any = jscookie.get('username');
       const role: any = jscookie.get('role');
-      setCookies({
-        username: username,
-        role: role,
-      })
+      setTheCookies(username, role)
     }, 1000); 
   },[]);
+
     const {username, role} = cookies;
     console.log(username);
     console.log(role);
