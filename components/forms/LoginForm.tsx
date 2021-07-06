@@ -72,6 +72,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
             <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
               Submit
             </button>
+            <div className={formik.isSubmitting ? 'd-block' : 'd-none'}>Submitting...</div>
           </Form>
         );
       }}

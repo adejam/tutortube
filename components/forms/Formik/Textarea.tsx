@@ -11,7 +11,7 @@ const Textarea: React.FunctionComponent<TextareaProps> = ({ label, name, ...rest
   return (
     <div className='form-control'>
       <label htmlFor={name}>{label}</label>
-      <Field as='textarea' id={name} name={name} {...rest} />
+      <Field as='textarea' className="form-control" id={name} name={name} {...rest} />
       <ErrorMessage component={TextError} name={name} />
     </div>
   )

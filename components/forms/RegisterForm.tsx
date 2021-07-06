@@ -90,7 +90,7 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
             <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
               Submit
             </button>
-            <div className={formik.isSubmitting ? 'd-block' : 'd-none'}>Submitting Form...</div>
+            <div className={formik.isSubmitting ? 'd-block' : 'd-none'}>Submitting...</div>
           </Form>
         );
       }}
