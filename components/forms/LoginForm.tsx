@@ -4,6 +4,7 @@ import LoginSchema from "../../schemas/login.schema";
 import { configHeader, server } from "../../config";
 import Axios from "axios";
 import jscookie from "js-cookie";
+import { useRouter } from "next/router";
 
 export interface LoginFormProps {}
 
@@ -17,7 +18,8 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
     email: "",
     password: "",
   };
-
+  
+  const router = useRouter();
   const onSubmit = (values: Values) => {
     Axios.post(`/login`, values, configHeader)
       .then((res) => {
@@ -32,6 +34,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
                 expires: 1 / 24,
                 path: "/",
               });
+              router.back();
             }
           })
           .catch((error) => {
@@ -66,7 +69,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
               name="password"
               options={[]}
             />
-            <button type="submit" disabled={!formik.isValid}>
+            <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
               Submit
             </button>
           </Form>

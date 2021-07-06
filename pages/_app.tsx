@@ -7,7 +7,7 @@ import Axios from 'axios'
 Axios.defaults.baseURL = 'https://tutortube-api.herokuapp.com/api/';
 Axios.defaults.withCredentials = true;
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps}: AppProps) => {
   return (
     <Layout>
       <Component {...pageProps} />

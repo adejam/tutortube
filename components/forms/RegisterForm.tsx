@@ -4,6 +4,7 @@ import RegistrationSchema from "../../schemas/registration.schema";
 import Axios from 'axios';
 import { configHeader, server } from '../../config'
 import jscookie from "js-cookie";
+import { useRouter } from "next/router";
 
 export interface RegisterFormProps {}
 
@@ -21,7 +22,7 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
     password: "",
     password_confirmation: "",
   };
-
+  const router = useRouter();
   const onSubmit = (values: Values) => {
     Axios.post(`/register`, values, configHeader)
       .then((res) => {
@@ -36,6 +37,7 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
                 expires: 1 / 24,
                 path: "/",
               });
+              router.back();
             }
         })
         .catch((error) => {
@@ -85,9 +87,10 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
               name="password_confirmation"
               options={[]}
             />
-            <button type="submit" disabled={!formik.isValid}>
+            <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
               Submit
             </button>
+            <div className={formik.isSubmitting ? 'd-block' : 'd-none'}>Submitting Form...</div>
           </Form>
         );
       }}

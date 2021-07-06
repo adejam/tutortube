@@ -9,11 +9,7 @@ const PageNotFound = () => {
         <title>Tutortube | 404</title>
       </Head>
       <h1>Ooops...</h1>
-      <h2>An Error Occurred. Try :(</h2>
-      <ol>
-        <li>Checking if your the URL exist</li>
-        <li>Checking your internet connection</li>
-      </ol>
+      <h2>Page not Found :(</h2>
       <p>
         Go back to the
         {' '}

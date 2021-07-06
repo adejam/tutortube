@@ -1,11 +1,18 @@
 import cookies from 'next-cookies';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+interface Data {
+  video: Video
+  comments: Array<object>
+  error: string
+}
 
 export interface singleVideoProps {
-    video: Video
+    data: Data
     token: string
     error: string
 }
-
 
 type Video = {
     video_id: string;
@@ -16,22 +23,40 @@ type Video = {
 }
 
  
-const singleVideo: React.FunctionComponent<singleVideoProps> = ({video, token, error}) => {
-    console.log(video);
+const SingleVideo: React.FunctionComponent<singleVideoProps> = ({data, token, error}) => {
+    console.log(data);
     console.log(token);
     console.log(error);
+    const router = useRouter();
+    useEffect(() => {
+      if (data.error) {
+      router.push("/404");
+    }
+    }, [data.error, router])
+    const {video} = data;
     return ( 
-        <div>
+        <>
+        <div className="ta-center">
+          {error ? (
+              <>
+              <h1>Ooops...</h1>
+              <h2>An Error Occurred. Check your internet connection and try again later :(</h2>
+              </>
+          ) : (
+            <>
             <h1>{video.title}</h1>
             <p>{video.description}</p>
+            </>
+          )}
         </div>
+        </>
      );
 }
  
-export default singleVideo;
+export default SingleVideo;
 
 export const getServerSideProps = async (ctx: any) => {
-    let video = {};
+    let data = {};
     let error = '';
     const { token, role, username } = cookies(ctx);
     if (!token) {
@@ -52,20 +77,11 @@ export const getServerSideProps = async (ctx: any) => {
             },
           },
         );
-        const vide = await response.json();
-        video = vide.videos
+        data = await response.json();
       } catch (e) {
         error = e.toString();
       }
-      if (error) {
-        return {
-          redirect: {
-            destination: '/404',
-            permanent: false,
-          },
-        }
-      }
     return {
-      props: { video, token, role, error },
+      props: { data, token, role, error },
     };
   };

@@ -1,13 +1,15 @@
 import cookies from 'next-cookies';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-interface videos {
+interface Data {
   videos: Array<Video>
+  error: string
 }
 
 export interface videosCategoryProps {
-    videos: videos
+    data: Data
     username: string
     role: string
     token: string
@@ -23,31 +25,50 @@ type Video = {
 }
 
  
-const videosCategory: React.FunctionComponent<videosCategoryProps> = ({videos, token, error}) => {
-    console.log(videos.videos);
+const VideosCategory: React.FunctionComponent<videosCategoryProps> = ({data, token, error}) => {
+    console.log(data.error);
+    console.log(data.videos);
     console.log(token);
     console.log(error);
-    const videosArray = videos.videos;
+    const router = useRouter();
+    useEffect(() => {
+      if (data.error) {
+      router.push("/404");
+    }
+    }, [data.error, router])
+    
+    const videosArray = data.videos ? data.videos : [];
     return ( 
         <>
-
-        {videosArray.map(video => (
+        {videosArray.length ? videosArray.map(video => (
           <div key={video.video_id}>
-<Link href={`/videos/${video.category}/${video.video_id}`} >
-          <a>{video.title}</a>
+          <Link href={`/videos/${video.category}/${video.video_id}`} >
+            <a>{video.title}</a>
           </Link>
           </div>
         
-      ))}
-      <h1>jdiid</h1>
+      )) : (
+        <div className="ta-center">
+          {error ? (
+              <>
+              <h1>Ooops...</h1>
+              <h2>An Error Occurred. Check your internet connection and try again later :(</h2>
+              </>
+          ) : (
+            <h2>There are currently no videos in this category</h2>
+          )}
+        </div>
+      )
+      
+      }
         </>
     );
 }
  
-export default videosCategory;
+export default VideosCategory;
 
 export const getServerSideProps = async (ctx: any) => {
-    let videos = {};
+    let data = {};
     let error = '';
     const { token, role, username } = cookies(ctx);
     if (!token) {
@@ -68,19 +89,11 @@ export const getServerSideProps = async (ctx: any) => {
             },
           },
         );
-        videos = await response.json();
+        data = await response.json();
       } catch (e) {
         error = e.toString();
       }
-      if (error) {
-        return {
-          redirect: {
-            destination: '/404',
-            permanent: false,
-          },
-        }
-      }
     return {
-      props: { videos, token, role, error },
+      props: { data, token, role, error },
     };
   };
