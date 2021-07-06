@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import jscookie from "js-cookie";
 
 const Navbar = () => {
   const [cookies, setCookies] = useState({username: '', role: ''});
-  
-  const setTheCookies = (username: any, role: any) => {
+
+   async function setTheCookies (username: any, role: any) {
     setCookies({
       ...cookies,
       username: username,
