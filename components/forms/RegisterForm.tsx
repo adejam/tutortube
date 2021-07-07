@@ -22,20 +22,20 @@ const RegisterForm = ():JSX.Element => {
   };
   const router = useRouter();
   const onSubmit = (values: Values) => {
-    Axios.post(`/register`, values, configHeader)
+    Axios.post(`/register`, values, configHeader)// a request is sent to the api-endpoint which returns a JWT token, username and role
       .then((res) => {
         const data = res.data;
-        const body = JSON.stringify({ token: data.token});
-        Axios.post(`${server}/register`, body, configHeader)
+        const body = JSON.stringify({ token: data.token}); // the token is stringified here
+        Axios.post(`${server}/register`, body, configHeader) // the token is sent to api/register where it is used to create a token cookie
         .then((res) => {
-          const { success } = res.data;
+          const { success } = res.data; // the response is checked if success returns true
             if (success) {
-              jscookie.set("role", data.role, { expires: 1 / 24, path: "/" });
+              jscookie.set("role", data.role, { expires: 1 / 24, path: "/" });// the username and role data are used to create their corressponding cookies but are javascript cookies 
               jscookie.set("username", data.username, {
                 expires: 1 / 24,
                 path: "/",
               });
-              router.back();
+              router.back(); // when the form is done then we redirect back to the previous page
             }
         })
         // .catch(() => {

@@ -51,7 +51,7 @@ const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
  };
   
   const router = useRouter();
-  const refreshData = () => {
+  const refreshPage = () => {
     router.replace(router.asPath);
   }
   useEffect(() => {
@@ -66,11 +66,11 @@ const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
   };
 
   const onSubmit = (values: Values, formikHelpers: FormikHelpers<any>) => {
-    Axios.post(`/add-comment`, values, configHeaderWithBearer)
+    Axios.post(`/add-comment`, values, configHeaderWithBearer) // we are sending a post request to the API endpoint to add comment to database
       .then(() => {
-        refreshData();
-        formikHelpers.setSubmitting(false);
-        formikHelpers.resetForm();
+        refreshPage();// on success we want to make a quick refresh on the page to update the state
+        formikHelpers.setSubmitting(false); // we stop submitting the form
+        formikHelpers.resetForm(); // here we reset the form
       })
   }
   return (
