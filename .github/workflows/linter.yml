@@ -23,3 +23,22 @@ jobs:
           npm install --save-dev eslint-config-next eslint
       - name: ESLint Report
         run: npm run lint
+
+  stylelint:
+    name: StyleLint
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+      - name: Set up Node 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install required dependency for node
+        run: |
+          npm install --save-dev stylelint@13.3.x stylelint-config-standard@20.0.x stylelint-csstree-validator
+      - name: Run StyleLint
+        run: |
+          npx stylelint "**/*.css"

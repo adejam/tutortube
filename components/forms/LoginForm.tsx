@@ -50,7 +50,7 @@ const LoginForm = ():JSX.Element => {
     >
       {(formik) => {
         return (
-          <Form>
+          <Form className="max-w-500 mx-auto">
             <FormikControl
               control="input"
               type="email"
@@ -65,7 +65,7 @@ const LoginForm = ():JSX.Element => {
               name="password"
               options={[]}
             />
-            <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
+            <button type="submit" className="btn btn-primary" disabled={!formik.isValid || formik.isSubmitting}>
               Submit
             </button>
             <div className={formik.isSubmitting ? 'd-block' : 'd-none'}>Submitting...</div>
