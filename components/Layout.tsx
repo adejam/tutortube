@@ -3,11 +3,7 @@ import Head from 'next/head';
 import Footer from './Footer';
 import Navbar from './Navbar';
 
-interface LayoutProps {
-  
-}
-
-const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => (
+const Layout = ({ children }: JSX.ElementChildrenAttribute):JSX.Element => (
   <div className="content">
     <Head>
       <title>Tutortube</title>

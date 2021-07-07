@@ -5,7 +5,7 @@ type Data = {
   success: boolean;
 }
 
-const handler =  (req: NextApiRequest, res: NextApiResponse<Data>) => {
+const handler =  (req: NextApiRequest, res: NextApiResponse<Data>):void => {
     if (req.method === 'GET') {
         res.setHeader(
             "Set-Cookie",

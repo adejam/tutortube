@@ -2,6 +2,7 @@ import cookies from 'next-cookies';
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next'
 
 interface Data {
   videos: Array<Video>
@@ -25,11 +26,7 @@ type Video = {
 }
 
  
-const VideosCategory: React.FunctionComponent<videosCategoryProps> = ({data, token, error}) => {
-    console.log(data.error);
-    console.log(data.videos);
-    console.log(token);
-    console.log(error);
+const VideosCategory: React.FunctionComponent<videosCategoryProps> = ({data, error}):JSX.Element => {
     const router = useRouter();
     useEffect(() => {
       if (data.error) {
@@ -67,10 +64,10 @@ const VideosCategory: React.FunctionComponent<videosCategoryProps> = ({data, tok
  
 export default VideosCategory;
 
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps:GetServerSideProps = async (ctx: any) => {
     let data = {};
     let error = '';
-    const { token, role, username } = cookies(ctx);
+    const { token, role } = cookies(ctx);
     if (!token) {
       return {
         redirect: {
@@ -94,6 +91,6 @@ export const getServerSideProps = async (ctx: any) => {
         error = e.toString();
       }
     return {
-      props: { data, token, role, error },
+      props: { data, role, error },
     };
   };

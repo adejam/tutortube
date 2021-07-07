@@ -7,7 +7,7 @@ export interface TextareaProps {
   name: string;
 }
 
-const Textarea: React.FunctionComponent<TextareaProps> = ({ label, name, ...rest }) => {
+const Textarea: React.FunctionComponent<TextareaProps> = ({ label, name, ...rest }):JSX.Element => {
   return (
     <div className='form-control'>
       <label htmlFor={name}>{label}</label>

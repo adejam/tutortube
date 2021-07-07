@@ -5,7 +5,7 @@ type Data = {
   success: boolean;
 }
 
-const handler =  (req: NextApiRequest, res: NextApiResponse<Data>) => {
+const handler =  (req: NextApiRequest, res: NextApiResponse<Data>):void => {
     const { body } = req;
     if (req.method === 'POST') {
         res.setHeader(

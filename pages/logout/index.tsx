@@ -1,16 +1,16 @@
 import cookies from "next-cookies";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { configHeader, server } from "../../config";
+import { server } from "../../config";
 import Axios from "axios";
 import jscookie from "js-cookie";
+import { GetServerSideProps, GetServerSidePropsContext, } from "next";
 
 interface logoutProps {
   token: string;
 }
 
-const Logout: React.FunctionComponent<logoutProps> = ({ token }) => {
-  console.log(token);
+const Logout: React.FunctionComponent<logoutProps> = ({ token }):JSX.Element => {
 
   const router = useRouter();
   useEffect(() => {
@@ -19,7 +19,7 @@ const Logout: React.FunctionComponent<logoutProps> = ({ token }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-        .then((res) => {
+        .then(() => {
           Axios.get(`${server}/logout`).then((res) => {
             const { success } = res.data;
             if (success) {
@@ -51,7 +51,7 @@ const Logout: React.FunctionComponent<logoutProps> = ({ token }) => {
 
 export default Logout;
 
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { token } = cookies(ctx);
   if (!token) {
     return {

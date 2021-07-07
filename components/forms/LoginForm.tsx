@@ -1,4 +1,4 @@
-import { Formik, Form, FormikHelpers } from "formik";
+import { Formik, Form } from "formik";
 import FormikControl from "./Formik/FormikControl";
 import LoginSchema from "../../schemas/login.schema";
 import { configHeader, server } from "../../config";
@@ -6,14 +6,12 @@ import Axios from "axios";
 import jscookie from "js-cookie";
 import { useRouter } from "next/router";
 
-export interface LoginFormProps {}
-
 interface Values {
   email: string;
   password: string;
 }
 
-const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
+const LoginForm = ():JSX.Element => {
   const initialValues = {
     email: "",
     password: "",
@@ -37,13 +35,11 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = () => {
               router.back();
             }
           })
-          .catch((error) => {
-            console.log(error);
-          });
+          // .catch(() => {
+          // });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      // .catch(() => {
+      // });
   };
 
   return (

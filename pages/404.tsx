@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 
-const PageNotFound = () => {
+const PageNotFound = ():JSX.Element => {
 
   return (
     <div className="not-found">

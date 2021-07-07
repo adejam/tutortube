@@ -15,7 +15,7 @@ export interface FormikControlProps {
   options: Option[];
 }
 
-const FormikControl: React.FunctionComponent<FormikControlProps> = ({ control, ...rest }) => {
+const FormikControl: React.FunctionComponent<FormikControlProps> = ({ control, ...rest }): null | JSX.Element => {
   switch (control) {
     case 'input':
       return <Input {...rest} />

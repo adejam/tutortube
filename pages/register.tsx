@@ -1,7 +1,7 @@
 import Head from 'next/head'
   import RegisterForm from '../components/forms/RegisterForm'
 
-const register = () => {
+const register = ():JSX.Element => {
     return (
         <>
         <Head>

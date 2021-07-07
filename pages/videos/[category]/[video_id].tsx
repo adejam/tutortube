@@ -1,9 +1,10 @@
 import cookies from "next-cookies";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { Formik, Form, FormikHelpers } from "formik";
+import { Formik, Form } from "formik";
 import FormikControl from "../../../components/forms/Formik/FormikControl";
 import CommentSchema from "../../../schemas/comment.schema";
+import { GetServerSideProps } from 'next'
 
 interface Data {
   video: Video;
@@ -37,9 +38,8 @@ type Video = {
 
 const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
   data,
-  token,
   error,
-}) => {
+}):JSX.Element => {
   
   const router = useRouter();
   useEffect(() => {
@@ -117,10 +117,10 @@ const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
 
 export default SingleVideo;
 
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let data = {};
   let error = "";
-  const { token, role, username } = cookies(ctx);
+  const { token, } = cookies(context);
   if (!token) {
     return {
       redirect: {
@@ -131,7 +131,7 @@ export const getServerSideProps = async (ctx: any) => {
   }
   try {
     const response = await fetch(
-      `https://tutortube-api.herokuapp.com/api/videos/${ctx.params.category}/${ctx.params.video_id}`,
+      `https://tutortube-api.herokuapp.com/api/videos/${context.params.category}/${context.params.video_id}`,
       {
         method: "GET",
         headers: {
@@ -144,6 +144,6 @@ export const getServerSideProps = async (ctx: any) => {
     error = e.toString();
   }
   return {
-    props: { data, token, role, error },
+    props: { data, token, error },
   };
 };

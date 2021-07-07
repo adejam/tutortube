@@ -12,7 +12,7 @@ export interface SelectProps {
   options: Option[];
 }
 
-const Select: React.FunctionComponent<SelectProps> = ({ label, name, options, ...rest }) => {
+const Select: React.FunctionComponent<SelectProps> = ({ label, name, options, ...rest }):JSX.Element => {
   return (
     <div className='form-control'>
       <label htmlFor={name}>{label}</label>

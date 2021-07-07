@@ -2,7 +2,7 @@ interface ModalProps {
   modalTitle: string
   modalId: string
   modalDisplay: boolean
-  closeModal: (...args: any[]) => any
+  closeModal: (...args: []) => void
 }
 
 const Modal: React.FunctionComponent<ModalProps> = ({
@@ -11,7 +11,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   children,
   modalDisplay,
   closeModal,
-}) => {
+}):JSX.Element => {
   const closeModalByWindowClick  = (e: any) => {
     if (e.target.classList.contains('modal')) {
       closeModal();

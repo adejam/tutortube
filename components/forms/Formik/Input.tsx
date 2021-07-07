@@ -6,7 +6,7 @@ export interface InputProps {
   name: string;
 }
 
-const Input: React.FunctionComponent<InputProps> = ({ label, name, ...rest }) => {
+const Input: React.FunctionComponent<InputProps> = ({ label, name, ...rest }):JSX.Element => {
   return (
     <div className='d-flex flex-column mb-10'>
       <label htmlFor={name}>{label}</label>

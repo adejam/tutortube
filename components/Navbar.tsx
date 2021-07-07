@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import jscookie from "js-cookie";
 
-const Navbar = () => {
+const Navbar = ():JSX.Element => {
   const [cookies, setCookies] = useState({username: '', role: ''});
 
    async function setTheCookies (username: any, role: any) {
@@ -22,8 +22,6 @@ const Navbar = () => {
   },[]);
 
     const {username, role} = cookies;
-    console.log(username);
-    console.log(role);
   return (
   <header className="bb-block bg-white">
     <nav className="d-flex justify-between mx-auto align-center">

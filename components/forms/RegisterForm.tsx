@@ -6,8 +6,6 @@ import { configHeader, server } from '../../config'
 import jscookie from "js-cookie";
 import { useRouter } from "next/router";
 
-export interface RegisterFormProps {}
-
 interface Values {
   name: string;
   email: string;
@@ -15,7 +13,7 @@ interface Values {
   password_confirmation: string;
 }
 
-const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
+const RegisterForm = ():JSX.Element => {
   const initialValues = {
     name: "",
     email: "",
@@ -40,13 +38,11 @@ const RegisterForm: React.FunctionComponent<RegisterFormProps> = () => {
               router.back();
             }
         })
-        .catch((error) => {
-        console.log(error);
-        });
+        // .catch(() => {
+        // });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      // .catch(() => {
+      // });
   };
 
   return (
