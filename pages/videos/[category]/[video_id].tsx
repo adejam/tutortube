@@ -1,10 +1,11 @@
 import cookies from "next-cookies";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import FormikControl from "../../../components/forms/Formik/FormikControl";
 import CommentSchema from "../../../schemas/comment.schema";
 import { GetServerSideProps } from 'next'
+import Axios from "axios";
 
 interface Data {
   video: Video;
@@ -39,9 +40,20 @@ type Video = {
 const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
   data,
   error,
+  token
 }):JSX.Element => {
+
+  const configHeaderWithBearer = { 
+    headers: { 
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+    }
+ };
   
   const router = useRouter();
+  const refreshData = () => {
+    router.replace(router.asPath);
+  }
   useEffect(() => {
     if (data.error) {
       router.push("/404");
@@ -49,11 +61,17 @@ const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
   }, [data.error, router]);
   const { video, comments } = data;
   const initialValues = {
+    video_id: data.video ? data.video.video_id : '',
     comment:  "",
   };
 
-  const onSubmit = (values: Values) => {
-    console.log(values);
+  const onSubmit = (values: Values, formikHelpers: FormikHelpers<any>) => {
+    Axios.post(`/add-comment`, values, configHeaderWithBearer)
+      .then(() => {
+        refreshData();
+        formikHelpers.setSubmitting(false);
+        formikHelpers.resetForm();
+      })
   }
   return (
     <>
@@ -97,6 +115,13 @@ const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
                       name="comment"
                       options={[]}
                     />
+                    <FormikControl
+                      control="input"
+                      type="hidden"
+                      label="Video"
+                      name="video_id"
+                      options={[]}
+                    />
                     <button
                       type="submit"
                       disabled={!formik.isValid || formik.isSubmitting}
@@ -117,10 +142,10 @@ const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
 
 export default SingleVideo;
 
-export const getServerSideProps: GetServerSideProps = async (context: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   let data = {};
   let error = "";
-  const { token, } = cookies(context);
+  const { token } = cookies(ctx);
   if (!token) {
     return {
       redirect: {
@@ -131,13 +156,13 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
   try {
     const response = await fetch(
-      `https://tutortube-api.herokuapp.com/api/videos/${context.params.category}/${context.params.video_id}`,
+      `https://tutortube-api.herokuapp.com/api/videos/${ctx.params.category}/${ctx.params.video_id}`,
       {
-        method: "GET",
+        method: 'GET',
         headers: {
-          Authorization: `Bearer ${token}`,
+          'Authorization': `Bearer ${token}`,
         },
-      }
+      },
     );
     data = await response.json();
   } catch (e) {
