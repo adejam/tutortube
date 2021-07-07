@@ -31,6 +31,10 @@ a:hover {
   opacity: 1;
 }
 
+.radius-50 {
+  border-radius: 50%;
+}
+
 button,
 input,
 optgroup,

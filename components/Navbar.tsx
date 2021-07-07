@@ -38,9 +38,14 @@ const Navbar = ():JSX.Element => {
             <a>Home</a>
           </Link>
         </li>
-        {username && (
         <li className="d-flex justify-center align-center mr-10">
-          <span>{username}</span>
+          <Link href="/">
+            <a>Courses</a>
+          </Link>
+        </li>
+        {username && (
+        <li className="d-flex justify-center p-10 align-center m-10 radius-50 btn-primary">
+          <span>{username[0]}</span>
         </li>
         )
         }

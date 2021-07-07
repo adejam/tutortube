@@ -35,7 +35,7 @@ const RegisterForm = ():JSX.Element => {
                 expires: 1 / 24,
                 path: "/",
               });
-              router.back(); // when the form is done then we redirect back to the previous page
+              router.push('/'); // when the form is done then we redirect to welcome page
             }
         })
         // .catch(() => {
