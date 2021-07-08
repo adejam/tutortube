@@ -1,8 +1,8 @@
 import cookies from 'next-cookies';
 import React, { useEffect } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps } from 'next';
+import SingleVideo from '../../components/SingleVideo'
 
 interface Data {
   videos: Array<Video>
@@ -36,13 +36,10 @@ const VideosCategory: React.FunctionComponent<videosCategoryProps> = ({data, err
     
     const videosArray = data.videos ? data.videos : [];
     return ( 
-        <>
+        <div className="d-flex justify-center wrap">
+
         {videosArray.length ? videosArray.map(video => (
-          <div key={video.video_id}>
-          <Link href={`/videos/${video.category}/${video.video_id}`} >
-            <a>{video.title}</a>
-          </Link>
-          </div>
+          <SingleVideo key={video.video_id} video={video} />
         
       )) : (
         <div className="ta-center">
@@ -58,7 +55,7 @@ const VideosCategory: React.FunctionComponent<videosCategoryProps> = ({data, err
       )
       
       }
-        </>
+      </div>
     );
 }
  
