@@ -215,3 +215,20 @@ button.close-modal-button {
 .hover-opacity:hover {
   opacity: 0.8;
 }
+
+.youtubeContainer {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.youtubeContainer iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -147,6 +147,14 @@ select:focus,
   border-right: 1px solid rgba(0, 0, 0, 0.125);
 }
 
+.br-left {
+  border-left: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.b-block {
+  border: 0.25px solid rgba(0, 0, 0, 0.125);
+}
+
 .bt-block {
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
@@ -255,4 +263,12 @@ select:focus,
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 100%;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.radius-25 {
+  border-radius: 25px;
 }

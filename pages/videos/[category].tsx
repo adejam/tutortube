@@ -11,9 +11,7 @@ interface Data {
 
 export interface videosCategoryProps {
     data: Data
-    username: string
-    role: string
-    token: string
+    category: string
     error: string
 }
 
@@ -26,7 +24,7 @@ type Video = {
 }
 
  
-const VideosCategory: React.FunctionComponent<videosCategoryProps> = ({data, error}):JSX.Element => {
+const VideosCategory: React.FunctionComponent<videosCategoryProps> = ({data, category, error}):JSX.Element => {
     const router = useRouter();
     useEffect(() => {
       if (data.error) {
@@ -37,7 +35,7 @@ const VideosCategory: React.FunctionComponent<videosCategoryProps> = ({data, err
     const videosArray = data.videos ? data.videos : [];
     return ( 
         <div className="d-flex justify-center wrap">
-
+         <h2 className="ta-center capitalize">{category} Videos</h2>
         {videosArray.length ? videosArray.map(video => (
           <SingleVideo key={video.video_id} video={video} />
         
@@ -64,7 +62,8 @@ export default VideosCategory;
 export const getServerSideProps:GetServerSideProps = async (ctx: any) => {
     let data = {};
     let error = '';
-    const { token, role } = cookies(ctx);
+    const category = ctx.params.category;
+    const { token } = cookies(ctx);
     if (!token) {
       return {
         redirect: {
@@ -88,6 +87,6 @@ export const getServerSideProps:GetServerSideProps = async (ctx: any) => {
         error = e.toString();
       }
     return {
-      props: { data, role, error },
+      props: { data, category, error, },
     };
   };
