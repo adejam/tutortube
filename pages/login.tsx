@@ -4,12 +4,12 @@ import LoginForm from '../components/forms/LoginForm'
 
 const login = ():JSX.Element => {
     return (
-        <>
+        <div className="mw-1200 mt-50">
         <Head>
         <title>Tutortube | Login</title>
         </Head>
             <LoginForm />
-        </>
+        </div>
     )
 }
 

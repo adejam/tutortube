@@ -272,3 +272,15 @@ select:focus,
 .radius-25 {
   border-radius: 25px;
 }
+
+.mh-full {
+  max-height: 100%;
+}
+
+.h-500 {
+  height: 350px;
+}
+
+.h-150 {
+  height: 150px
+}

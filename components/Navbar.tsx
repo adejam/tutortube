@@ -24,7 +24,7 @@ const Navbar = ():JSX.Element => {
     const {username, role} = cookies;
   return (
   <header className="bb-block bg-white">
-    <nav className="d-flex justify-between mx-auto align-center">
+    <nav className="d-flex mw-1200 justify-between mx-auto align-center">
       <div className="brand ml-10">
         <Link href="/">
           <a>

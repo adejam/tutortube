@@ -7,6 +7,7 @@ import CommentSchema from "../../../schemas/comment.schema";
 import { GetServerSideProps } from "next";
 import Axios from "axios";
 import YoutubePlayer from "../../../components/YoutubePlayer";
+import Head from 'next/head'
 
 interface Data {
   video: Video;
@@ -75,6 +76,9 @@ const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
   };
   return (
     <>
+      <Head>
+        <title>Tutortube | {video.title}</title>
+      </Head>
       <div>
         {error ? (
           <div className="ta-center">

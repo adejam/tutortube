@@ -3,12 +3,11 @@ nav {
   flex-direction: column;
 }
 
-nav,
-main {
+.mw-1200 {
   max-width: 1200px;
 }
 
-main {
+.mt-50 {
   margin-top: 50px;
 }
 
@@ -231,4 +230,14 @@ button.close-modal-button {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.vh-full {
+  height: 100vh;
+}
+
+.welcome-div img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 200px !important;
 }
