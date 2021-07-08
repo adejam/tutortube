@@ -72,6 +72,10 @@ const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
         refreshPage(); // on success we want to make a quick refresh on the page to update the state
         formikHelpers.setSubmitting(false); // we stop submitting the form
         formikHelpers.resetForm(); // here we reset the form
+      })
+      .catch(() => {
+        formikHelpers.setSubmitting(false); // we stop submitting the form
+        formikHelpers.resetForm();
       });
   };
   return (
@@ -79,7 +83,7 @@ const SingleVideo: React.FunctionComponent<singleVideoProps> = ({
       <Head>
         <title>Tutortube | {video.title}</title>
       </Head>
-      <div>
+      <div className="mw-1200 mx-auto mt-50">
         {error ? (
           <div className="ta-center">
             <h1>Ooops...</h1>

@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import FormikControl from "./Formik/FormikControl";
 import LoginSchema from "../../schemas/login.schema";
 import { configHeader, server } from "../../config";
@@ -18,7 +18,7 @@ const LoginForm = ():JSX.Element => {
   };
   
   const router = useRouter();
-  const onSubmit = (values: Values) => {
+  const onSubmit = (values: Values, formikHelpers: FormikHelpers<any>) => {
     Axios.post(`/login`, values, configHeader)// a request is sent to the api-endpoint which returns a JWT token, username and role
       .then((res) => {
         const data = res.data;
@@ -38,8 +38,10 @@ const LoginForm = ():JSX.Element => {
           // .catch(() => {
           // });
       })
-      // .catch(() => {
-      // });
+      .catch(() => {
+        formikHelpers.setSubmitting(false); // we stop submitting the form
+        formikHelpers.resetForm();
+      });
   };
 
   return (
