@@ -9,7 +9,7 @@ export interface TextareaProps {
 
 const Textarea: React.FunctionComponent<TextareaProps> = ({ label, name, ...rest }):JSX.Element => {
   return (
-    <div className='form-control'>
+    <div className='d-flex flex-column mb-10'>
       <label htmlFor={name}>{label}</label>
       <Field as='textarea' className="form-control" id={name} name={name} {...rest} />
       <ErrorMessage component={TextError} name={name} />

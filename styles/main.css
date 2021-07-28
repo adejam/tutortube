@@ -3,12 +3,11 @@ nav {
   flex-direction: column;
 }
 
-nav,
-main {
+.mw-1200 {
   max-width: 1200px;
 }
 
-main {
+.mt-50 {
   margin-top: 50px;
 }
 
@@ -74,8 +73,12 @@ footer {
   text-align: center;
 }
 
+.bg-primary,
 .not-found a {
   color: #4979ff;
+}
+
+.not-found a {
   text-decoration: underline;
 }
 
@@ -176,4 +179,65 @@ button.close-modal-button {
   to {
     opacity: 1;
   }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+
+  /* border: 1px solid rgba(0, 0, 0, 0.125); */
+  border-radius: 0.25rem;
+}
+
+.thumbnail > div {
+  width: 100%;
+}
+
+.thumbnail img {
+  height: 180px !important;
+  width: 100% !important;
+  display: block !important;
+  border-top-left-radius: calc(0.25rem - 1px) !important;
+  border-top-right-radius: calc(0.25rem - 1px) !important;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.hover-opacity:hover {
+  opacity: 0.8;
+}
+
+.youtubeContainer {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.youtubeContainer iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.vh-full {
+  height: 100vh;
+}
+
+.welcome-div img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 200px !important;
 }

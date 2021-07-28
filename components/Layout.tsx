@@ -12,7 +12,7 @@ const Layout = ({ children }: JSX.ElementChildrenAttribute):JSX.Element => (
       <link rel="icon" href="/favicon.png" />
     </Head>
     <Navbar />
-    <main className="mx-auto p-10">{children}</main>
+    <main className="mx-auto">{children}</main>
     <Footer />
   </div>
 );

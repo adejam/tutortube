@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import FormikControl from "./Formik/FormikControl";
 import LoginSchema from "../../schemas/login.schema";
 import { configHeader, server } from "../../config";
@@ -18,7 +18,7 @@ const LoginForm = ():JSX.Element => {
   };
   
   const router = useRouter();
-  const onSubmit = (values: Values) => {
+  const onSubmit = (values: Values, formikHelpers: FormikHelpers<any>) => {
     Axios.post(`/login`, values, configHeader)// a request is sent to the api-endpoint which returns a JWT token, username and role
       .then((res) => {
         const data = res.data;
@@ -32,14 +32,16 @@ const LoginForm = ():JSX.Element => {
                 expires: 1 / 24,
                 path: "/",
               });
-              router.back(); // when the form is done then we redirect back to the previous page
+              router.push('/'); // when the form is done then we redirect to welcome page
             }
           })
           // .catch(() => {
           // });
       })
-      // .catch(() => {
-      // });
+      .catch(() => {
+        formikHelpers.setSubmitting(false); // we stop submitting the form
+        formikHelpers.resetForm();
+      });
   };
 
   return (
@@ -50,7 +52,7 @@ const LoginForm = ():JSX.Element => {
     >
       {(formik) => {
         return (
-          <Form>
+          <Form className="max-w-500 mx-auto">
             <FormikControl
               control="input"
               type="email"
@@ -65,7 +67,7 @@ const LoginForm = ():JSX.Element => {
               name="password"
               options={[]}
             />
-            <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
+            <button type="submit" className="btn btn-primary" disabled={!formik.isValid || formik.isSubmitting}>
               Submit
             </button>
             <div className={formik.isSubmitting ? 'd-block' : 'd-none'}>Submitting...</div>

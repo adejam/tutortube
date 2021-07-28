@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik";
+import { Formik, Form,FormikHelpers } from "formik";
 import FormikControl from "./Formik/FormikControl";
 import RegistrationSchema from "../../schemas/registration.schema";
 import Axios from 'axios';
@@ -21,7 +21,7 @@ const RegisterForm = ():JSX.Element => {
     password_confirmation: "",
   };
   const router = useRouter();
-  const onSubmit = (values: Values) => {
+  const onSubmit = (values: Values, formikHelpers: FormikHelpers<any>) => {
     Axios.post(`/register`, values, configHeader)// a request is sent to the api-endpoint which returns a JWT token, username and role
       .then((res) => {
         const data = res.data;
@@ -35,14 +35,16 @@ const RegisterForm = ():JSX.Element => {
                 expires: 1 / 24,
                 path: "/",
               });
-              router.back(); // when the form is done then we redirect back to the previous page
+              router.push('/'); // when the form is done then we redirect to welcome page
             }
         })
         // .catch(() => {
         // });
       })
-      // .catch(() => {
-      // });
+      .catch(() => {
+        formikHelpers.setSubmitting(false); // we stop submitting the form
+        formikHelpers.resetForm();
+      })
   };
 
   return (
@@ -53,7 +55,7 @@ const RegisterForm = ():JSX.Element => {
     >
       {(formik) => {
         return (
-          <Form>
+          <Form className="max-w-500 mx-auto">
             <FormikControl
               control="input"
               type="text"
@@ -83,7 +85,7 @@ const RegisterForm = ():JSX.Element => {
               name="password_confirmation"
               options={[]}
             />
-            <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
+            <button type="submit" className="btn btn-primary" disabled={!formik.isValid || formik.isSubmitting}>
               Submit
             </button>
             <div className={formik.isSubmitting ? 'd-block' : 'd-none'}>Submitting...</div>

@@ -24,7 +24,7 @@ const Navbar = ():JSX.Element => {
     const {username, role} = cookies;
   return (
   <header className="bb-block bg-white">
-    <nav className="d-flex justify-between mx-auto align-center">
+    <nav className="d-flex mw-1200 justify-between mx-auto align-center">
       <div className="brand ml-10">
         <Link href="/">
           <a>
@@ -38,9 +38,14 @@ const Navbar = ():JSX.Element => {
             <a>Home</a>
           </Link>
         </li>
-        {username && (
         <li className="d-flex justify-center align-center mr-10">
-          <span>{username}</span>
+          <Link href="/">
+            <a>Courses</a>
+          </Link>
+        </li>
+        {username && (
+        <li className="d-flex justify-center p-10 align-center m-10 radius-50 btn-primary">
+          <span>{username[0]}</span>
         </li>
         )
         }

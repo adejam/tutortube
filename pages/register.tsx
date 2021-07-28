@@ -3,12 +3,12 @@ import Head from 'next/head'
 
 const register = ():JSX.Element => {
     return (
-        <>
+      <div className="mx-auto mw-1200 mt-50">
         <Head>
         <title>Tutortube | Register</title>
         </Head>
         <RegisterForm />
-        </>
+        </div>
     )
 }
 
