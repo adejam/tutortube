@@ -80,12 +80,6 @@ and to have it actually fix (to the best of its ability) any format issues, run:
 npm run format
 ```
 
-You can also check against HTML Validator:
-
-```bash
-npm run html-validator
-```
-
 To run the App
 
 ```bash
